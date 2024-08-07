@@ -1,0 +1,13 @@
+<p class="text">Update Order</p>
+<div class="first">
+  <div class="container">
+  <h3>Order id: {{orderId}}</h3>
+    <label for="" class="form-label">New Status</label>
+    <select class="form-select form-select-m" name="" id="" [(ngModel)]="newStatus" >
+      <option *ngIf="currentUserRole.toString() === 'User'" [value]="OrderStatus.Done">Done</option>
+      <option *ngIf="currentUserRole.toString() === 'User'" [value]="OrderStatus.Canceled">Cancel</option>
+      <option *ngIf="currentUserRole.toString() === 'Worker'" [value]="OrderStatus.InProgress">InProgress</option>
+      <option *ngIf="currentUserRole.toString() === 'Worker'" [value]="OrderStatus.Canceled">Cancel</option>
+    </select> <button type="button" class="btn" (click)="Update()">Update</button>
+  </div>
+</div>

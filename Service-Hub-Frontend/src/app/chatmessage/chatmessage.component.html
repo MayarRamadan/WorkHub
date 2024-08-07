@@ -1,0 +1,87 @@
+
+  <h1 type="text" [(ngModel)]="chatmessage.SenderId" placeholder="Enter your username" ><h1></h1>
+  <div id="id">
+    <h1 style="text-align: center;font-size:42px;font-weight: bolder;">Chat</h1>
+
+  </div>
+
+<div *ngIf="!accountService.isWorker()" >
+  <div class="box">
+    <div *ngFor="let msg of chatmessages" class="card text-start">
+      <div class="card-body">
+        <p class="card-text">
+          <div>
+            <strong>{{ msg.SenderId === currentUserId ? 'You' : msg.ReceiverId }}:</strong> {{ msg.Message }}
+          </div>
+        <br>
+
+            <small style="font-size: 8px; color:rgb(243, 243, 243)">{{ msg.createdDate | date: 'short' }}</small>
+
+      </div>
+    </div>
+  </div>
+    <input type="text" [(ngModel)]="chatmessage.Message" (keydown.enter)="send()" placeholder="Enter your message" />
+    <button type="button" class="btn btn-primary" (click)="send()">
+    Send
+    </button>
+  </div>
+  <div *ngIf="accountService.isWorker()">
+    <div class="wbox">
+      <div *ngFor="let msg of chatmessages" class="card text-start worker">
+        <img src="./assets/images/worker.jpg">
+        <div class="card-body">
+          <p class="card-text">
+            <div>
+              <strong>{{ msg.SenderId === currentUserId ?'You': msg.ReceiverId }}:</strong> {{ msg.Message }}
+            </div>
+        <br>
+            <small style="font-size: 8px; color:rgba(0, 0, 0, 0.562)">{{ msg.createdDate | date: 'short' }}</small>
+
+      </div>
+    </div>
+  </div>
+       <input type="text" [(ngModel)]="chatmessage.Message" (keydown.enter)="send()" placeholder="Enter your message" />
+      <button type="button" class="btn btn-primary" (click)="send()">
+      Send
+      </button>
+    </div>
+
+    <!-- <h1>{{ chatmessage.SenderId }}</h1>
+<div id="id">
+  <h1 style="text-align: center; font-size: 42px; font-weight: bolder;">Chat</h1>
+</div> -->
+
+<!-- Regular user chat -->
+<!-- <div *ngIf="!accountService.isWorker()">
+  <div class="box">
+    <div *ngFor="let msg of chatmessages" class="card text-start">
+      <div class="card-body">
+          <div>
+            <strong>{{ msg.SenderId === currentUserId ? 'You': msg.ReceiverId }}: </strong> {{ msg.Message }}
+          </div>
+          <br>
+          <small style="font-size: 8px; color: rgb(243, 243, 243)">{{ msg.createdDate | date: 'short' }}</small>
+      </div>
+    </div>
+  </div>
+  <input type="text" [(ngModel)]="chatmessage.Message" (keydown.enter)="send()" placeholder="Enter your message" />
+  <button type="button" class="btn btn-primary" (click)="send()">Send</button>
+</div>
+
+<div *ngIf="accountService.isWorker()">
+  <div class="wbox">
+    <div *ngFor="let msg of chatmessages" class="card text-start worker">
+      <img src="./assets/images/worker.jpg" alt="Worker Image" />
+      <div class="card-body">
+          <div>
+            <strong>{{ msg.SenderId === currentUserId ? 'You' : msg.ReceiverId }}:</strong> {{ msg.Message }}
+          </div>
+          <br>
+          <small style="font-size: 8px; color: rgba(0, 0, 0, 0.562)">{{ msg.createdDate | date: 'short' }}</small>
+        
+      </div>
+    </div>
+  </div>
+  <input type="text" [(ngModel)]="chatmessage.Message" (keydown.enter)="send()" placeholder="Enter your message" />
+  <button type="button" class="btn btn-primary" (click)="send()">Send</button>
+</div> -->
